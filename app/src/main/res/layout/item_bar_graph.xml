@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:background="#d7d7d7"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/margin_item_graph_vertical"
+        android:layout_marginRight="@dimen/margin_item_graph_vertical"
+        android:padding="@dimen/padding_item_graph"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/view"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_alignTop="@+id/view"
+        android:layout_alignRight="@+id/title"
+        android:layout_alignEnd="@+id/title"
+        android:id="@+id/linearLayout">
+
+        <com.cybemos.uilibrary.views.Legend
+            android:layout_marginBottom="@dimen/margin_item_graph_horizontal"
+            app:titleText="@string/legend"
+            app:spacing="5dp"
+            app:numberOfColumns="1"
+            android:layout_weight="0.7"
+            android:id="@+id/legend"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <com.cybemos.uilibrary.views.graph.BarGraph
+            android:layout_marginBottom="@dimen/margin_item_graph_horizontal"
+            android:layout_weight="0.3"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/barGraph"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="@dimen/dim_error_item"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/error_message"
+        android:id="@+id/error_view"
+        android:gravity="center"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

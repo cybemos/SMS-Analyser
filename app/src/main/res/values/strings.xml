@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">SMS Analyser</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_result">Statistics (All)</string>
+    <string name="title_activity_result_contact">Statistics (%s)</string>
+    <string name="no_subtitle_result">No title</string>
+    <string name="subtitle_result_1">received/sent SMS</string>
+    <string name="subtitle_result_2">Words average</string>
+    <string name="subtitle_result_3">Total words</string>
+    <string name="subtitle_result_4">Total characteres</string>
+    <string name="subtitle_result_5">Average SMS by day</string>
+    <string name="subtitle_result_6">Average SMS by week</string>
+    <string name="subtitle_result_7">Average SMS by month</string>
+    <string name="subtitle_result_8">Average SMS by year</string>
+    <string name="all">All</string>
+    <string name="format_integer" translatable="false">"%1$,d"</string>
+    <string name="format_double" translatable="false">"%1$,.3f"</string>
+    <string name="format_double_percent" translatable="false">"%1$,.3f%%"</string>
+    <string name="received">Received</string>
+    <string name="sent">Sent</string>
+    <string name="select_contact">Select contact</string>
+    <string name="title_activity_show_files">ShowFilesActivity</string>
+    <string name="format_xml">XML Format</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="legend">Legend :</string>
+    <string name="format">Format</string>
+    <string name="filename">Filename</string>
+    <string name="filename_example">statistics</string>
+    <string name="file_saved">File saved</string>
+    <string name="file_not_saved">Error while saving file…</string>
+    <string name="analyse">Analyse</string>
+    <string name="export">Export</string>
+    <string name="share">Share</string>
+    <string name="choose_color_received">Choose Received Color</string>
+    <string name="choose_color_sent">Choose Sent Color</string>
+    <string name="error_pick_contact">"The contact isn't valid."</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="color_picker_received_id" translatable="false">color_picker_preference_received</string>
+    <string name="color_picker_sent_id" translatable="false">color_picker_preference_sent</string>
+    <string name="graph_type_id" translatable="false">graph_type_id</string>
+    <string name="format_graph_id" translatable="false">format_graph_id</string>
+
+    <string name="no_files">No files</string>
+
+    <plurals name="delete_file_confirm_title">
+    <item quantity="one">Delete %s ?</item>
+    <item quantity="other">"delete %d files ?"</item>
+</plurals>
+    <plurals name="delete_file_confirm">
+        <item quantity="one">"Are you sure you want to delete %s ?"</item>
+        <item quantity="other">"Are you sure you want to delete %d files ?"</item>
+    </plurals>
+    <string name="delete">Delete</string>
+
+    <string name="type_diagram_default_value" translatable="false">1</string>
+    <string-array name="type_diagram_keys" translatable="false">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="type_diagram">
+        <item>Pie Graph</item>
+        <item>Bar Graph</item>
+    </string-array>
+
+    <string name="graph_type">Graph type</string>
+    <string name="error_loading_file">Error loading file</string>
+    <string name="error_format">"The format isn't valid"</string>
+    <string name="error_analyse_contact">"Can't get data from contacts"</string>
+    <string name="reload">Reload</string>
+
+    <string name="format_graph_title">Graph values format</string>
+    <string name="format_graph_default_value" translatable="false">1</string>
+    <string-array name="format_graph_keys" translatable="false">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="format_graph">
+        <item>Real values</item>
+        <item>Percentage</item>
+    </string-array>
+
+    <string name="error_message">No data available</string>
+    <string name="waiting_message">Waiting…</string>
+
+    <string name="cant_show_files">"Can't show files"</string>
+
+    <string name="format_txt">TXT format</string>
+
+
+    <string name="preferences_format_export">Default export format</string>
+    <string name="preferences_format_export_id" translatable="false">preferences_format_export_id</string>
+    <string name="format_export_default_value" translatable="false">xml</string>
+    <string-array name="format_export_keys" translatable="false">
+        <item>xml</item>
+        <item>txt</item>
+    </string-array>
+    <string-array name="format_export">
+        <item>@string/format_xml</item>
+        <item>@string/format_txt</item>
+    </string-array>
+
+    <string name="preferences_graphs">Graphs</string>
+    <string name="preferences_export">Export</string>
+
+</resources>

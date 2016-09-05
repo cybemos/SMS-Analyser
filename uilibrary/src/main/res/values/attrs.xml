@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Legend">
+        <attr name="titleText" format="string" localization="suggested" />
+        <attr name="numberOfColumns" format="integer" />
+        <attr name="spacing" format="dimension" />
+        <attr name="textColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="DeterminateProgressBar">
+        <attr name="max" format="float" />
+        <attr name="value" format="float" />
+        <attr name="textSize" format="dimension"/>
+        <attr name="colorProgressBar" format="color"/>
+        <attr name="colorText" format="color"/>
+        <attr name="textShown" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="PieGraph">
+        <attr name="percentCircleRatio" format="float"/>
+    </declare-styleable>
+
+</resources>

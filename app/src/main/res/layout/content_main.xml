@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.activities.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <Button
+        android:text="@string/analyse"
+        android:textColor="#fff"
+        android:background="@drawable/round_button"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:id="@+id/button_analyse"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <com.cybemos.uilibrary.views.DeterminateProgressBar
+        app:max="100"
+        app:value="0"
+        app:textShown="false"
+        app:colorProgressBar="@color/color_received"
+        app:textSize="18sp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+
+</RelativeLayout>

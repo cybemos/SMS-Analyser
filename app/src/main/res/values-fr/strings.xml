@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Analyseur de SMS</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="title_activity_result">Statistiques (Tout)</string>
+    <string name="title_activity_result_contact">Statistiques (%s)</string>
+    <string name="no_subtitle_result">Pas de titre</string>
+    <string name="subtitle_result_1">SMS reçus/envoyés</string>
+    <string name="subtitle_result_2">Moyenne de mots</string>
+    <string name="subtitle_result_3">Mots totaux</string>
+    <string name="subtitle_result_4">Caractères totaux</string>
+    <string name="all">Tout</string>
+    <string name="select_contact">Selectionner contact</string>
+    <string name="received">Reçus</string>
+    <string name="sent">Envoyés</string>
+    <string name="format_xml">Format XML</string>
+    <string name="dialog_cancel">Annuler</string>
+    <string name="dialog_ok">OK</string>
+    <string name="legend">Légende :</string>
+    <string name="subtitle_result_5">SMS moyens par jour</string>
+    <string name="subtitle_result_6">SMS moyens par semaine</string>
+    <string name="subtitle_result_7">SMS moyens par mois</string>
+    <string name="subtitle_result_8">SMS moyens par an</string>
+    <string name="format">Format</string>
+    <string name="filename">Nom du fichier</string>
+    <string name="filename_example">statistiques</string>
+    <string name="file_saved">Fichier sauvegardé</string>
+    <string name="file_not_saved">Erreur lors de la sauvegarde…</string>
+    <string name="analyse">Analyser</string>
+    <string name="export">Exporter</string>
+    <string name="share">Partager</string>
+    <string name="title_activity_show_files">ShowFilesActivity</string>
+    <string name="choose_color_received">Choisir la couleur de réception</string>
+    <string name="choose_color_sent">"Choisir la couleur d'envoi"</string>
+    <string name="error_pick_contact">"Le contact n'est pas valide."</string>
+
+    <string name="no_files">Aucun fichier</string>
+    <plurals name="delete_file_confirm_title">
+        <item quantity="one">Supprimer %s ?</item>
+        <item quantity="other">"Supprimer %d fichiers ?"</item>
+    </plurals>
+    <plurals name="delete_file_confirm">
+        <item quantity="one">"Are you sure you want to delete %s ?"</item>
+        <item quantity="other">"Are you sure you want to delete %d files ?"</item>
+    </plurals>
+    <string name="delete">Supprimer</string>
+    <string-array name="type_diagram">
+        <item>Pie Graph</item>
+        <item>Bar Graph</item>
+    </string-array>
+
+    <string name="title_activity_settings">Paramètres</string>
+
+    <string name="graph_type">Type de graphe</string>
+    <string name="error_loading_file">Erreur lors du chargement du fichier</string>
+    <string name="error_format">"Le format du fichier n'est pas valide"</string>
+    <string name="error_analyse_contact">"Impossible de récupérer les données des contacts"</string>
+    <string name="reload">Reload</string>
+
+    <string name="format_graph_title">Format des valeurs des graphes</string>
+    <string-array name="format_graph">
+        <item>Vraies valeures</item>
+        <item>Pourcentage</item>
+    </string-array>
+
+    <string name="error_message">Pas de données disponibles</string>
+    <string name="waiting_message">En attente des données…</string>
+
+    <string name="cant_show_files">"Impossible d'afficher les fichiers"</string>
+</resources>
