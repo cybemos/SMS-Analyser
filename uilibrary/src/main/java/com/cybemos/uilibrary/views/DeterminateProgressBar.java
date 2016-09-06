@@ -100,8 +100,8 @@ public class DeterminateProgressBar extends View {
         if (showText) { // show text in percent at the center
             mPaint.setTextSize(textSize);
             mPaint.setAntiAlias(true);
-            String str = Integer.toString((int) (mValue * 100 / mMax));
-            str += " %";
+            // noinspection all
+            String str = String.format("%1$,.3f%%", mValue * 100 / mMax);
             mPaint.setColor(colorText);
             float len = mPaint.measureText(str);
             float x = rect.centerX() - len / 2;
@@ -130,12 +130,6 @@ public class DeterminateProgressBar extends View {
 
         a.recycle();
         mNoInvalidate = false;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        setValue(mValue+1);
-        return true;
     }
 
     @Override
