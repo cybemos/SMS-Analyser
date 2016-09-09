@@ -49,10 +49,6 @@ public class ContactAnalyser implements Serializable, IAnalyser {
         return name;
     }
 
-    public String getNumber() {
-        return number;
-    }
-
     @Override
     public boolean jobFinished() {
         return request1.isFinished() && request2.isFinished();

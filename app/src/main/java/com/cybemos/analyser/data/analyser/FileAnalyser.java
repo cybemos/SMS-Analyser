@@ -44,7 +44,6 @@ public class FileAnalyser implements IAnalyser {
 
     @Override
     public String getName() {
-        //return (statistics != null) ? statistics.getName() : file.getName();
         return file.getName();
     }
 

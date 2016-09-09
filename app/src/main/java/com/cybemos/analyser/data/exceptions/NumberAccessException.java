@@ -5,4 +5,5 @@ package com.cybemos.analyser.data.exceptions;
  * @version 1.0
  */
 public class NumberAccessException extends Exception {
+    private static final long serialVersionUID = -3851942746651007900L;
 }

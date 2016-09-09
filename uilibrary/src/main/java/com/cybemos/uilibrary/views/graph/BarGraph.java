@@ -10,7 +10,8 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
+
+import com.cybemos.uilibrary.views.AbstractTextView;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
  * @version 1.0
  */
-public class BarGraph extends View {
+public class BarGraph extends AbstractTextView {
 
     private static final String TAG = "BarGraph";
 
@@ -103,6 +104,11 @@ public class BarGraph extends View {
 
         mRect.left = 0;
 
+        float textSize = 30;
+        if (mTextSize != SIZE_NOT_DEFINED) {
+            textSize = mTextSize;
+        }
+
         for (BarData barData : bars) {
             if (barData.mSelected) {
                 mPaint.setColor(barData.mBar.getSelectedColor());
@@ -124,7 +130,7 @@ public class BarGraph extends View {
             String text;
             if ((text = barData.mBar.getText()) != null) {
                 Bar.Position position = barData.mBar.getTextPosition();
-                mPaint.setTextSize(30);
+                mPaint.setTextSize(textSize);
                 mPaint.setAntiAlias(true);
                 mPaint.setColor(barData.mBar.getTextColor());
                 float lenStr = mPaint.measureText(text);
@@ -150,7 +156,7 @@ public class BarGraph extends View {
 
         mRect.left = 0;
         mPaint.setColor(Color.BLACK);
-        mPaint.setTextSize(30);
+        mPaint.setTextSize(textSize);
         canvas.drawLine(mRect.left, maxHeight + padding, maxWidth, maxHeight + padding, mPaint);
         int index = 0;
         for (String label : mLabels) {
@@ -173,8 +179,7 @@ public class BarGraph extends View {
             case MotionEvent.ACTION_DOWN:
                 int index = 0;
                 for (BarData barData : bars) {
-                    if (barData.mBar.canBeClicked()
-                            && barData.mRect.contains(event.getX(), event.getY())) {
+                    if (barData.mRect.contains(event.getX(), event.getY())) {
                         barData.mSelected = true;
                         mLastBarTouchedIndex = index;
                         consume = true;

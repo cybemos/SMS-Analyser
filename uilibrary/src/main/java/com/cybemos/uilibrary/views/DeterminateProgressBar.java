@@ -11,7 +11,6 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.support.annotation.FloatRange;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.cybemos.uilibrary.R;
@@ -31,7 +30,7 @@ public class DeterminateProgressBar extends View {
     private int colorProgressBar;
     private int colorText;
     private boolean showText;
-    private boolean mNoInvalidate;
+    private boolean mNoInvalidate = false;
 
     public DeterminateProgressBar(Context context) {
         super(context);
@@ -127,7 +126,6 @@ public class DeterminateProgressBar extends View {
         colorProgressBar = a.getColor(R.styleable.DeterminateProgressBar_colorProgressBar, Color.BLACK);
         colorText = a.getColor(R.styleable.DeterminateProgressBar_colorText, Color.BLACK);
         showText = a.getBoolean(R.styleable.DeterminateProgressBar_textShown, true);
-
         a.recycle();
         mNoInvalidate = false;
     }

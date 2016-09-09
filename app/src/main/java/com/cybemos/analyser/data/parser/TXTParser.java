@@ -10,7 +10,6 @@ import com.cybemos.analyser.data.statistics.Statistics;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;

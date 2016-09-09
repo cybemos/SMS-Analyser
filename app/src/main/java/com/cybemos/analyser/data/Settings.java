@@ -9,7 +9,6 @@ import android.util.Log;
 
 import com.cybemos.analyser.R;
 import com.cybemos.analyser.data.parser.Extension;
-import com.cybemos.analyser.data.parser.MyXMLParser;
 import com.cybemos.analyser.data.parser.ParserController;
 
 import java.util.List;
@@ -32,9 +31,6 @@ public class Settings {
 
     public final static int FORMAT_REAL_VALUES = 1;
     public final static int FORMAT_PERCENTAGE = 2;
-
-    public final static String FORMAT_XML = "1";
-    public final static String FORMAT_TXT = "2";
 
     public Settings(Context context) {
         this.context = context;

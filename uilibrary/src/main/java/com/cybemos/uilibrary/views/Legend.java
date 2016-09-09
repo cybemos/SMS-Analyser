@@ -16,7 +16,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 
 import com.cybemos.uilibrary.R;
 
@@ -27,23 +26,26 @@ import java.util.List;
  * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
  * @version 1.0
  */
-public class Legend extends View {
+public class Legend extends AbstractTextView {
 
     private final static String TAG = "Legend";
+
+    // listener
     private LegendListener mListener;
+
     private Path path;
     private Paint mPaint;
     private RectF rect;
     private List<Elem> elements;
     private Elem[][] elemList;
     private float[] sizes;
-    //private Rect dimensions;
     private boolean drawCompleted;
     @Nullable
     private String title;
     private int numberOfColumns;
     private float spacing;
     private int colorText;
+    private boolean mustAdaptToSize;
 
     public Legend(Context context) {
         super(context);
@@ -146,6 +148,8 @@ public class Legend extends View {
         setTitle(a.getString(R.styleable.Legend_titleText), false);
         setSpacing(a.getDimension(R.styleable.Legend_spacing, 5f), false);
         colorText = a.getColor(R.styleable.Legend_textColor, Color.BLACK);
+        mustAdaptToSize = mTextSize == SIZE_NOT_DEFINED;
+
         a.recycle();
 
         elements = new ArrayList<>();
@@ -163,51 +167,87 @@ public class Legend extends View {
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
         float takenWidth, takenHeight;
-        float lengthColor = widthSize * 0.1f;
+        float lengthColor = generateTextSize(widthSize);
         initElements();
         takenWidth = measureWidth(lengthColor, lengthColor);
         takenHeight = measureHeight(lengthColor, lengthColor);
-        float percent = takenWidth / takenHeight;
 
         int width = 0;
         int height = 0;
+        if (mustAdaptToSize) {
+            float percent = takenWidth / takenHeight;
 
-        switch (widthMode) {
-            case MeasureSpec.EXACTLY:
-                width = widthSize;
-                switch (heightMode) {
-                    case MeasureSpec.EXACTLY:
-                        height = heightSize;
-                        break;
-                    case MeasureSpec.AT_MOST:
-                    case MeasureSpec.UNSPECIFIED:
-                        height = (int) (width / percent);
-                        break;
-                }
-                break;
-            case MeasureSpec.AT_MOST:
-            case MeasureSpec.UNSPECIFIED:
-                switch (heightMode) {
-                    case MeasureSpec.EXACTLY:
-                        height = heightSize;
-                        width = (int) (height * percent);
-                        break;
-                    case MeasureSpec.AT_MOST:
-                    case MeasureSpec.UNSPECIFIED:
-                        width = height = (int) measureWidth(20, 20);
-                        break;
-                }
-                break;
-        }
+            switch (widthMode) {
+                case MeasureSpec.EXACTLY:
+                    width = widthSize;
+                    switch (heightMode) {
+                        case MeasureSpec.EXACTLY:
+                            height = heightSize;
+                            break;
+                        case MeasureSpec.AT_MOST:
+                        case MeasureSpec.UNSPECIFIED:
+                            height = (int) (width / percent);
+                            break;
+                    }
+                    break;
+                case MeasureSpec.AT_MOST:
+                case MeasureSpec.UNSPECIFIED:
+                    switch (heightMode) {
+                        case MeasureSpec.EXACTLY:
+                            height = heightSize;
+                            width = (int) (height * percent);
+                            break;
+                        case MeasureSpec.AT_MOST:
+                        case MeasureSpec.UNSPECIFIED:
+                            width = (int) measureWidth(20, 20);
+                            height = (int) measureHeight(20, 20);
+                            break;
+                    }
+                    break;
+            }
 
-        if (widthMode == MeasureSpec.AT_MOST) {
-            width = Math.min(width, widthSize);
-        }
-        if (heightMode == MeasureSpec.AT_MOST) {
-            height = Math.min(height, heightSize);
+            if (widthMode == MeasureSpec.AT_MOST) {
+                width = Math.min(width, widthSize);
+            }
+            if (heightMode == MeasureSpec.AT_MOST) {
+                height = Math.min(height, heightSize);
+            }
+        } else {
+            switch (widthMode) {
+                case MeasureSpec.AT_MOST:
+                    width = (int) Math.max(widthSize, takenWidth);
+                    break;
+                case MeasureSpec.EXACTLY:
+                    width = widthSize;
+                    break;
+                case MeasureSpec.UNSPECIFIED:
+                    width = (int) takenWidth;
+                    break;
+            }
+            switch (heightMode) {
+                case MeasureSpec.AT_MOST:
+                    height = (int) Math.max(heightSize, takenHeight);
+                    break;
+                case MeasureSpec.EXACTLY:
+                    height = heightSize;
+                    break;
+                case MeasureSpec.UNSPECIFIED:
+                    height = (int) takenHeight;
+                    break;
+            }
         }
 
         setMeasuredDimension(width, height);
+    }
+
+    private float generateTextSize(float widthSize) {
+        float ret;
+        if (mTextSize != SIZE_NOT_DEFINED) {
+            ret = mTextSize;
+        } else {
+            ret = widthSize * 0.1f;
+        }
+        return ret;
     }
 
     @SuppressWarnings("HardCodedStringLiteral")
@@ -220,35 +260,37 @@ public class Legend extends View {
         height = canvas.getHeight();
         left = top = spacing;
 
-        float lengthColor = width * 0.1f;
+        float lengthColor = generateTextSize(width);
 
         initElements();
 
         takenWidth = measureWidth(lengthColor, lengthColor);
         takenHeight = measureHeight(lengthColor, lengthColor);
 
-        float spacingLength = 0;
-        if (title != null) {
-            spacingLength = spacing * 2;
-        }
-        if (elemList.length > 0) {
-            spacingLength += elemList[0].length * spacing;
-        }
+        if (mustAdaptToSize) {
+            float spacingLength = 0;
+            if (title != null) {
+                spacingLength = spacing * 2;
+            }
+            if (elemList.length > 0) {
+                spacingLength += elemList[0].length * spacing;
+            }
 
-        ratioWidth = width / takenWidth;
-        ratioHeight = (height - spacingLength) / (takenHeight - spacingLength);
+            ratioWidth = width / takenWidth;
+            ratioHeight = (height - spacingLength) / (takenHeight - spacingLength);
 
-        if (ratioWidth > ratioHeight) {
-            lengthColor = lengthColor * ratioHeight;
-            takenWidth = measureWidth(lengthColor, lengthColor);
-            takenHeight = measureHeight(lengthColor, lengthColor);
-            left = (width - takenWidth) / 2;
-        } else {
-            lengthColor = lengthColor * ratioWidth;
-            takenWidth = measureWidth(lengthColor, lengthColor);
-            takenHeight = measureHeight(lengthColor, lengthColor);
-            top = (height - takenHeight) / 2;
+            if (ratioWidth > ratioHeight) {
+                lengthColor = lengthColor * ratioHeight;
+                takenWidth = measureWidth(lengthColor, lengthColor);
+                takenHeight = measureHeight(lengthColor, lengthColor);
+            } else {
+                lengthColor = lengthColor * ratioWidth;
+                takenWidth = measureWidth(lengthColor, lengthColor);
+                takenHeight = measureHeight(lengthColor, lengthColor);
+            }
         }
+        top += (height - takenHeight) / 2;
+        left += (width - takenWidth) / 2;
 
         canvas.drawColor(Color.TRANSPARENT);
 
@@ -259,13 +301,6 @@ public class Legend extends View {
         rect.top = top - spacing;
         rect.bottom = rect.top + takenHeight + spacing;
         rect.right = rect.left + takenWidth + spacing;
-        /*mPaint.setColor(Color.LTGRAY);
-        canvas.drawRect(rect, mPaint);
-
-        dimensions.left = rect.left;
-        dimensions.top = rect.top;
-        dimensions.bottom = rect.bottom;
-        dimensions.right = rect.right;*/
 
         if (title != null) {
             path.reset();

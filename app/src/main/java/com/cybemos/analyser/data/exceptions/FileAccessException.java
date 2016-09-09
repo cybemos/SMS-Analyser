@@ -5,4 +5,5 @@ package com.cybemos.analyser.data.exceptions;
  * @version 1.0
  */
 public class FileAccessException extends Exception {
+    private static final long serialVersionUID = 5793928278352282641L;
 }

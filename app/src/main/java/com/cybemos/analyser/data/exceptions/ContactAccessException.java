@@ -5,4 +5,5 @@ package com.cybemos.analyser.data.exceptions;
  * @version 1.0
  */
 public class ContactAccessException extends Exception {
+    private static final long serialVersionUID = 2666258637117283389L;
 }

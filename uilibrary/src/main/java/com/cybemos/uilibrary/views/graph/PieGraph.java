@@ -12,9 +12,9 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 
 import com.cybemos.uilibrary.R;
+import com.cybemos.uilibrary.views.AbstractTextView;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ import java.util.ArrayList;
  * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
  * @version 1.0
  */
-public class PieGraph extends View {
+public class PieGraph extends AbstractTextView {
 
     private static final String TAG = "PieGraph";
     private Path path;
@@ -69,22 +69,33 @@ public class PieGraph extends View {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        int maxHeight, maxWidth, min;
+        float centerX, centerY;
+        float len, degrees, ty, tx, x, y, ratio, distance, arc_sweep, arc_offset, top, left, textSize;
+        String text;
+
         updateSlicesData();
-        int maxHeight, maxWidth;
+
         maxWidth = canvas.getWidth();
         maxHeight = canvas.getHeight();
-        int min = Math.min(maxHeight, maxWidth);
+        min = Math.min(maxHeight, maxWidth);
+        ratio = min * mPercentCircleRatio / 200f;
+        distance = min * (200 - mPercentCircleRatio) / 400;
+        left = (maxWidth - min) / 2;
+        top = (maxHeight - min) / 2;
 
-        float ratio = min * mPercentCircleRatio / 200f;
-
-        float arc_sweep, arc_offset;
+        textSize = 30;
+        if (mTextSize != SIZE_NOT_DEFINED) {
+            textSize = mTextSize;
+        }
 
         arc_offset = 270;
         for (SliceData sliceData : slices) {
-            rect.top = rect.left = 0;
-            rect.bottom = rect.right = min;
-            sliceData.mRegion.set(0, 0, min, min);
-            //Log.i(TAG, "degrees : "+sliceData.mDegrees);
+            rect.top = top;
+            rect.left = left;
+            rect.bottom = rect.top + min;
+            rect.right = rect.left + min;
+            sliceData.mRegion.set((int) rect.left ,(int) rect.top, (int) rect.right, (int) rect.bottom);
             arc_sweep = sliceData.mDegrees;
 
             path.reset();
@@ -93,8 +104,10 @@ public class PieGraph extends View {
             } else {
                 path.arcTo(rect, arc_offset, arc_sweep);
             }
-            rect.top = rect.left = ratio;
-            rect.bottom = rect.right = min - ratio;
+            rect.top = top + ratio;
+            rect.left = left + ratio;
+            rect.bottom = rect.bottom - ratio;
+            rect.right = rect.right - ratio;
             if (arc_sweep == 360) {
                 path.addArc(rect, arc_offset + arc_sweep, -arc_sweep);
             } else {
@@ -108,25 +121,23 @@ public class PieGraph extends View {
             }
             canvas.drawPath(path, mPaint);
 
-
-            String text;
             if ((text = sliceData.mSlice.getText()) != null) {
-                mPaint.setTextSize(30);
+                mPaint.setTextSize(textSize);
                 mPaint.setAntiAlias(true);
                 mPaint.setColor(sliceData.mSlice.getTextColor());
-                float len = mPaint.measureText(text);
-                rect.top = rect.left = 0;
-                rect.bottom = rect.right = min;
-                float centerX, centerY;
+                len = mPaint.measureText(text);
+                rect.top = top;
+                rect.left = left;
+                rect.bottom = rect.top + min;
+                rect.right = rect.left + min;
                 centerX = rect.centerX();
                 centerY = rect.centerY();
-                float distance = min / 4;
-                float degrees = arc_offset + sliceData.mDegrees / 2;
+                degrees = arc_offset + sliceData.mDegrees / 2;
                 degrees %= 360;
-                float ty = (float) Math.sin(toRadian(degrees));
-                float tx = (float) Math.cos(toRadian(degrees));
-                float x = centerX + tx * distance - len / 2;
-                float y = centerY + ty * distance + mPaint.getTextSize() / 2;
+                ty = (float) Math.sin(toRadian(degrees));
+                tx = (float) Math.cos(toRadian(degrees));
+                x = centerX + tx * distance - len / 2;
+                y = centerY + ty * distance + mPaint.getTextSize() / 2;
                 canvas.drawText(text, x, y, mPaint);
             }
 
@@ -155,13 +166,11 @@ public class PieGraph extends View {
     public boolean onTouchEvent(MotionEvent event) {
         boolean consume = false;
         int action = event.getAction();
-        //Log.i(TAG, action+"");
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 int index = 0;
                 for (SliceData sliceData : slices) {
-                    if (sliceData.mSlice.canBeClicked()
-                            && sliceData.mRegion.contains((int) event.getX(), (int) event.getY())) {
+                    if (sliceData.mRegion.contains((int) event.getX(), (int) event.getY())) {
                         sliceData.mSelected = true;
                         mLastSliceTouchedIndex = index;
                         consume = true;

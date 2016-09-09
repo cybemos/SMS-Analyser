@@ -12,22 +12,12 @@ public class GraphElement {
     private int mColor;
     private String mText;
     private int mTextColor;
-    private boolean mCanBeClicked;
 
     public GraphElement() {
         mValue = 0;
         mColor = Color.BLUE;
         mText = null;
         mTextColor = Color.BLACK;
-        mCanBeClicked = true;
-    }
-
-    public void setCanBeClicked(boolean canBeClicked) {
-        mCanBeClicked = canBeClicked;
-    }
-
-    public boolean canBeClicked() {
-        return mCanBeClicked;
     }
 
     public void setText(String text) {
