@@ -173,11 +173,8 @@ public class ResultAdapter extends BaseAdapter {
             }
         }
         title = (TextView) view.findViewById(R.id.title);
-        //data1 = (TextView) view.findViewById(R.id.data1);
-        //data2 = (TextView) view.findViewById(R.id.data2);
         Legend legend = (Legend) view.findViewById(R.id.legend);
 
-        //error = analyser != null && analyser.hasError();
         if (analyser != null && analyser.hasError()) {
             setState(State.ERROR);
         }
@@ -287,6 +284,7 @@ public class ResultAdapter extends BaseAdapter {
                     barGraph.addBar((Bar) e2);
                 }
             }
+            @StringRes int res;
             switch (position) {
                 case 0:
                     number1 = statistics.getNumberOfSMS(Statistics.Request.RECEIVED);
@@ -295,8 +293,9 @@ public class ResultAdapter extends BaseAdapter {
                     //data2.setText(context.getString(R.string.format_integer, number2));
                     if (showPercentage[position]) {
                         total  = number1 + number2;
-                        e1.setText(context.getString(R.string.format_double_percent, number1 * 100 / total));
-                        e2.setText(context.getString(R.string.format_double_percent, number2 * 100 / total));
+                        res = getPercentFormat(settings);
+                        e1.setText(context.getString(res, number1 * 100 / total));
+                        e2.setText(context.getString(res, number2 * 100 / total));
                     } else {
                         e1.setText(context.getString(R.string.format_integer, number1));
                         e2.setText(context.getString(R.string.format_integer, number2));
@@ -311,8 +310,9 @@ public class ResultAdapter extends BaseAdapter {
                     //data2.setText(context.getString(R.string.format_double, d2));
                     if (showPercentage[position]) {
                         total  = d1 + d2;
-                        e1.setText(context.getString(R.string.format_double_percent, d1 * 100 / total));
-                        e2.setText(context.getString(R.string.format_double_percent, d2 * 100 / total));
+                        res = getPercentFormat(settings);
+                        e1.setText(context.getString(res, d1 * 100 / total));
+                        e2.setText(context.getString(res, d2 * 100 / total));
                     } else {
                         e1.setText(context.getString(R.string.format_double, d1));
                         e2.setText(context.getString(R.string.format_double, d2));
@@ -327,8 +327,9 @@ public class ResultAdapter extends BaseAdapter {
                     //data2.setText(context.getString(R.string.format_integer, number2));
                     if (showPercentage[position]) {
                         total  = number1 + number2;
-                        e1.setText(context.getString(R.string.format_double_percent, number1 * 100 / total));
-                        e2.setText(context.getString(R.string.format_double_percent, number2 * 100 / total));
+                        res = getPercentFormat(settings);
+                        e1.setText(context.getString(res, number1 * 100 / total));
+                        e2.setText(context.getString(res, number2 * 100 / total));
                     } else {
                         e1.setText(context.getString(R.string.format_integer, number1));
                         e2.setText(context.getString(R.string.format_integer, number2));
@@ -343,8 +344,9 @@ public class ResultAdapter extends BaseAdapter {
                     //data2.setText(context.getString(R.string.format_integer, number2));
                     if (showPercentage[position]) {
                         total  = number1 + number2;
-                        e1.setText(context.getString(R.string.format_double_percent, number1 * 100 / total));
-                        e2.setText(context.getString(R.string.format_double_percent, number2 * 100 / total));
+                        res = getPercentFormat(settings);
+                        e1.setText(context.getString(res, number1 * 100 / total));
+                        e2.setText(context.getString(res, number2 * 100 / total));
                     } else {
                         e1.setText(context.getString(R.string.format_integer, number1));
                         e2.setText(context.getString(R.string.format_integer, number2));
@@ -359,8 +361,9 @@ public class ResultAdapter extends BaseAdapter {
                     //data2.setText(context.getString(R.string.format_double, d2));
                     if (showPercentage[position]) {
                         total  = d1 + d2;
-                        e1.setText(context.getString(R.string.format_double_percent, d1 * 100 / total));
-                        e2.setText(context.getString(R.string.format_double_percent, d2 * 100 / total));
+                        res = getPercentFormat(settings);
+                        e1.setText(context.getString(res, d1 * 100 / total));
+                        e2.setText(context.getString(res, d2 * 100 / total));
                     } else {
                         e1.setText(context.getString(R.string.format_double, d1));
                         e2.setText(context.getString(R.string.format_double, d2));
@@ -375,8 +378,9 @@ public class ResultAdapter extends BaseAdapter {
                     //data2.setText(context.getString(R.string.format_double, d2));
                     if (showPercentage[position]) {
                         total  = d1 + d2;
-                        e1.setText(context.getString(R.string.format_double_percent, d1 * 100 / total));
-                        e2.setText(context.getString(R.string.format_double_percent, d2 * 100 / total));
+                        res = getPercentFormat(settings);
+                        e1.setText(context.getString(res, d1 * 100 / total));
+                        e2.setText(context.getString(res, d2 * 100 / total));
                     } else {
                         e1.setText(context.getString(R.string.format_double, d1));
                         e2.setText(context.getString(R.string.format_double, d2));
@@ -391,8 +395,9 @@ public class ResultAdapter extends BaseAdapter {
                     //data2.setText(context.getString(R.string.format_double, d2));
                     if (showPercentage[position]) {
                         total  = d1 + d2;
-                        e1.setText(context.getString(R.string.format_double_percent, d1 * 100 / total));
-                        e2.setText(context.getString(R.string.format_double_percent, d2 * 100 / total));
+                        res = getPercentFormat(settings);
+                        e1.setText(context.getString(res, d1 * 100 / total));
+                        e2.setText(context.getString(res, d2 * 100 / total));
                     } else {
                         e1.setText(context.getString(R.string.format_double, d1));
                         e2.setText(context.getString(R.string.format_double, d2));
@@ -407,8 +412,9 @@ public class ResultAdapter extends BaseAdapter {
                     //data2.setText(context.getString(R.string.format_double, d2));
                     if (showPercentage[position]) {
                         total  = d1 + d2;
-                        e1.setText(context.getString(R.string.format_double_percent, d1 * 100 / total));
-                        e2.setText(context.getString(R.string.format_double_percent, d2 * 100 / total));
+                        res = getPercentFormat(settings);
+                        e1.setText(context.getString(res, d1 * 100 / total));
+                        e2.setText(context.getString(res, d2 * 100 / total));
                     } else {
                         e1.setText(context.getString(R.string.format_double, d1));
                         e2.setText(context.getString(R.string.format_double, d2));
@@ -424,6 +430,24 @@ public class ResultAdapter extends BaseAdapter {
             barGraph.postInvalidate();
         }
         return view;
+    }
+
+    @StringRes
+    private int getPercentFormat(Settings settings) {
+        @StringRes int res = R.string.format_double_percent_0;
+        int number = settings.getNumberOfFractionDigits();
+        switch (number) {
+            case 1:
+                res = R.string.format_double_percent_1;
+                break;
+            case 2:
+                res = R.string.format_double_percent_2;
+                break;
+            case 3:
+                res = R.string.format_double_percent_3;
+                break;
+        }
+        return res;
     }
 
     public enum State {

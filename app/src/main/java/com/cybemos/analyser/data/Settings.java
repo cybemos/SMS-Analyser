@@ -88,6 +88,21 @@ public class Settings {
         return intVal;
     }
 
+    public int getNumberOfFractionDigits() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String key = context.getString(R.string.preferences_nb_fraction_digits_id);
+        String value = sharedPref.getString(key, "0");
+        int intVal;
+        try {
+            intVal = Integer.valueOf(value);
+        } catch (NumberFormatException e) {
+            intVal = 0;
+            //noinspection HardCodedStringLiteral
+            Log.e(TAG, value+" can't be converted to an integer");
+        }
+        return intVal;
+    }
+
     public Extension getDefaultExtension() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         ParserController controller = ParserController.getInstance();

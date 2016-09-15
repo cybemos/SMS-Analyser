@@ -15,10 +15,9 @@ public interface Constants {
     String EXTRA_NUMBER = "com.cybemos.analyser.EXTRA_NUMBER";
     String EXTRA_NAME = "com.cybemos.analyser.EXTRA_NAME";
     String EXTRA_CONTACT_ID = "com.cybemos.analyser.EXTRA_CONTACT_ID";
-    String EXTRA_COLOR_RECEIVED = "com.cybemos.analyser.EXTRA_COLOR_RECEIVED";
-    String EXTRA_COLOR_SENT = "com.cybemos.analyser.EXTRA_COLOR_SENT";
     String EXTRA_FILES = "com.cybemos.analyser.EXTRA_FILES";
     String EXTRA_SELECTION_MODE = "com.cybemos.analyser.EXTRA_SELECTION_MODE";
+    String EXTRA_MENU_SHOWN = "com.cybemos.analyser.EXTRA_MENU_SHOWN";
 
     String DIRECTORY = "com.cybemos.analyser/";
 

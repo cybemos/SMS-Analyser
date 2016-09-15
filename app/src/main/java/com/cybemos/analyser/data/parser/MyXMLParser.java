@@ -30,11 +30,8 @@ import java.util.List;
 public class MyXMLParser implements Parser {
 
     private static final String TAG = "MyXMLParser";
-
     private static final String EXTENSION = "xml";
-
     private static final String ATTRIBUTE_VALUE = "value";
-
     private static final String TAG_GENERAL = "statistics";
 
     public MyXMLParser() {}

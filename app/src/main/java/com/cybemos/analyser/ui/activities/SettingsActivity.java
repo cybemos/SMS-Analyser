@@ -15,6 +15,8 @@ import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
 import com.cybemos.analyser.R;
+import com.cybemos.analyser.data.Settings;
+import com.cybemos.analyser.data.Util;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -28,15 +30,17 @@ import com.cybemos.analyser.R;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
+
+    private static SettingsFragment prefFragment;
+
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
-    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
+    private final static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
-
             if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in
                 // the preference's 'entries' list.
@@ -51,6 +55,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
                 preference.setSummary(stringValue);
+            }
+            String key = preference.getKey();
+            if (Util.context.getString(R.string.format_graph_id).equals(key)) {
+                if (prefFragment.mPreference != null) {
+                    prefFragment.mPreference.setEnabled(stringValue.equals(Integer.toString(Settings.FORMAT_PERCENTAGE)));
+                }
             }
             return true;
         }
@@ -110,12 +120,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     }
 
-    //@SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupActionBar();
-        SettingsFragment prefFragment = new SettingsFragment();
+        prefFragment = new SettingsFragment();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(android.R.id.content, prefFragment);
@@ -141,23 +150,29 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     public static class SettingsFragment extends PreferenceFragment {
+
+        private Preference mPreference;
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setHasOptionsMenu(true);
-            addPreferencesFromResource(R.xml.pref_colors);
+            addPreferencesFromResource(R.xml.preferences);
 
             String key_received = getString(R.string.color_picker_received_id);
             String key_sent = getString(R.string.color_picker_sent_id);
             String key_graph_type = getString(R.string.graph_type_id);
             String format_graph = getString(R.string.format_graph_id);
             String format_export = getString(R.string.preferences_format_export_id);
+            String fraction_digits = getString(R.string.preferences_nb_fraction_digits_id);
 
+            mPreference = findPreference(fraction_digits);
+            bindPreferenceSummaryToValue(mPreference);
             bindPreferenceSummaryToValue(findPreference(key_received));
             bindPreferenceSummaryToValue(findPreference(key_sent));
-            bindPreferenceSummaryToValue(findPreference(key_graph_type));
-            bindPreferenceSummaryToValue(findPreference(format_graph));
             bindPreferenceSummaryToValue(findPreference(format_export));
+            bindPreferenceSummaryToValue(findPreference(format_graph));
+            bindPreferenceSummaryToValue(findPreference(key_graph_type));
         }
     }
 

@@ -15,7 +15,12 @@
     <string name="all">All</string>
     <string name="format_integer" translatable="false">"%1$,d"</string>
     <string name="format_double" translatable="false">"%1$,.3f"</string>
-    <string name="format_double_percent" translatable="false">"%1$,.3f%%"</string>
+
+    <string name="format_double_percent_3" translatable="false">"%1$,.3f%%"</string>
+    <string name="format_double_percent_2" translatable="false">"%1$,.2f%%"</string>
+    <string name="format_double_percent_1" translatable="false">"%1$,.1f%%"</string>
+    <string name="format_double_percent_0" translatable="false">"%1$,.0f%%"</string>
+
     <string name="received">Received</string>
     <string name="sent">Sent</string>
     <string name="select_contact">Select contact</string>
@@ -103,5 +108,15 @@
 
     <string name="preferences_graphs">Graphs</string>
     <string name="preferences_export">Export</string>
+
+    <string name="preferences_nb_fraction_digits_title">Number of fraction digits</string>
+    <string name="preferences_nb_fraction_digits_id" translatable="false">preferences_nb_fraction_digits_id</string>
+    <string name="preferences_nb_fraction_digits_default_value" translatable="false">1</string>
+    <string-array name="preferences_nb_fraction_digits_entries" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 
 </resources>

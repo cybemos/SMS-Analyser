@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/preferences_graphs">
+
+        <com.flask.colorpicker.ColorPickerPreference
+            app:pickerTitle="@string/choose_color_received"
+            app:pickerButtonOk="@string/dialog_ok"
+            app:pickerButtonCancel="@string/dialog_cancel"
+            android:title="@string/choose_color_received"
+            android:key="@string/color_picker_received_id"
+            app:initialColor="0xffcd5454"
+            app:alphaSlider="true"
+            app:lightnessSlider="true"/>
+
+        <com.flask.colorpicker.ColorPickerPreference
+            app:pickerTitle="@string/choose_color_sent"
+            app:pickerButtonOk="@string/dialog_ok"
+            app:pickerButtonCancel="@string/dialog_cancel"
+            android:title="@string/choose_color_sent"
+            android:key="@string/color_picker_sent_id"
+            app:initialColor="0xff4385cb"
+            app:alphaSlider="true"
+            app:lightnessSlider="true"/>
+
+        <ListPreference
+            android:title="@string/graph_type"
+            android:defaultValue="@string/type_diagram_default_value"
+            android:key="@string/graph_type_id"
+            android:entries="@array/type_diagram"
+            android:entryValues="@array/type_diagram_keys"/>
+
+        <ListPreference
+            android:title="@string/format_graph_title"
+            android:key="@string/format_graph_id"
+            android:defaultValue="@string/format_graph_default_value"
+            android:entries="@array/format_graph"
+            android:entryValues="@array/format_graph_keys"/>
+
+        <ListPreference
+            android:title="@string/preferences_nb_fraction_digits_title"
+            android:key="@string/preferences_nb_fraction_digits_id"
+            android:defaultValue="@string/preferences_nb_fraction_digits_default_value"
+            android:entries="@array/preferences_nb_fraction_digits_entries"
+            android:entryValues="@array/preferences_nb_fraction_digits_entries"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/preferences_export">
+
+        <ListPreference
+            android:title="@string/preferences_format_export"
+            android:key="@string/preferences_format_export_id"
+            android:defaultValue="@string/format_export_default_value"
+            android:entries="@array/format_export"
+            android:entryValues="@array/format_export_keys"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

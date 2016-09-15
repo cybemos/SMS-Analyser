@@ -147,11 +147,7 @@ public class TXTParser implements Parser {
             }
             fileReader.close();
             statistics.validate();
-        }/* catch (FileNotFoundException e) {
-            //noinspection HardCodedStringLiteral
-            Log.e(TAG, "Exception occurred in reading");
-            statistics = null;
-        } */catch (IOException e) {
+        } catch (IOException e) {
             //noinspection HardCodedStringLiteral
             Log.e(TAG, "Exception occurred in reading");
             statistics = null;
@@ -169,70 +165,76 @@ public class TXTParser implements Parser {
             Date date;
             String name = parts[0];
             String value = parts[1];
-            switch (name) {
-                case TAG_NAME:
-                    statistics.setName(value);
-                    break;
-                case TAG_DATE:
-                    date = new Date(Long.valueOf(value));
-                    statistics.setDate(date);
-                    break;
-                case TAG_FIRST_SMS_DATE_RECEIVED:
-                    date = new Date(Long.valueOf(value));
-                    statistics.setFirstDateSMS(Statistics.Request.RECEIVED, date);
-                    break;
-                case TAG_FIRST_SMS_DATE_SENT:
-                    date = new Date(Long.valueOf(value));
-                    statistics.setFirstDateSMS(Statistics.Request.SENT, date);
-                    break;
-                case TAG_NUMBER_OF_SMS_RECEIVED:
-                    statistics.setNumberOfSMS(Statistics.Request.RECEIVED, Integer.valueOf(value));
-                    break;
-                case TAG_NUMBER_OF_SMS_SENT:
-                    statistics.setNumberOfSMS(Statistics.Request.SENT, Integer.valueOf(value));
-                    break;
-                case TAG_AVERAGE_CHARACTERS_BY_SMS_RECEIVED:
-                    statistics.setAverageCharactersBySMS(Statistics.Request.RECEIVED, Double.valueOf(value));
-                    break;
-                case TAG_AVERAGE_CHARACTERS_BY_SMS_SENT:
-                    statistics.setAverageCharactersBySMS(Statistics.Request.SENT, Double.valueOf(value));
-                    break;
-                case TAG_TOTAL_WORDS_RECEIVED:
-                    statistics.setTotalWords(Statistics.Request.RECEIVED, Integer.valueOf(value));
-                    break;
-                case TAG_TOTAL_WORDS_SENT:
-                    statistics.setTotalWords(Statistics.Request.SENT, Integer.valueOf(value));
-                    break;
-                case TAG_TOTAL_CHARACTERS_RECEIVED:
-                    statistics.setTotalCharacters(Statistics.Request.RECEIVED, Integer.valueOf(value));
-                    break;
-                case TAG_TOTAL_CHARACTERS_SENT:
-                    statistics.setTotalCharacters(Statistics.Request.SENT, Integer.valueOf(value));
-                    break;
-                case TAG_SMS_BY_DAY_RECEIVED:
-                    statistics.setNumberOfSMSBy(Statistics.Request.RECEIVED, Statistics.TIME.DAY, Double.valueOf(value));
-                    break;
-                case TAG_SMS_BY_DAY_SENT:
-                    statistics.setNumberOfSMSBy(Statistics.Request.SENT, Statistics.TIME.DAY, Double.valueOf(value));
-                    break;
-                case TAG_SMS_BY_WEEK_RECEIVED:
-                    statistics.setNumberOfSMSBy(Statistics.Request.RECEIVED, Statistics.TIME.WEEK, Double.valueOf(value));
-                    break;
-                case TAG_SMS_BY_WEEK_SENT:
-                    statistics.setNumberOfSMSBy(Statistics.Request.SENT, Statistics.TIME.WEEK, Double.valueOf(value));
-                    break;
-                case TAG_SMS_BY_MONTH_RECEIVED:
-                    statistics.setNumberOfSMSBy(Statistics.Request.RECEIVED, Statistics.TIME.MONTH, Double.valueOf(value));
-                    break;
-                case TAG_SMS_BY_MONTH_SENT:
-                    statistics.setNumberOfSMSBy(Statistics.Request.SENT, Statistics.TIME.MONTH, Double.valueOf(value));
-                    break;
-                case TAG_SMS_BY_YEAR_RECEIVED:
-                    statistics.setNumberOfSMSBy(Statistics.Request.RECEIVED, Statistics.TIME.YEAR, Double.valueOf(value));
-                    break;
-                case TAG_SMS_BY_YEAR_SENT:
-                    statistics.setNumberOfSMSBy(Statistics.Request.SENT, Statistics.TIME.YEAR, Double.valueOf(value));
-                    break;
+            if (name != null && value != null) {
+                try {
+                    switch (name) {
+                        case TAG_NAME:
+                            statistics.setName(value);
+                            break;
+                        case TAG_DATE:
+                            date = new Date(Long.valueOf(value));
+                            statistics.setDate(date);
+                            break;
+                        case TAG_FIRST_SMS_DATE_RECEIVED:
+                            date = new Date(Long.valueOf(value));
+                            statistics.setFirstDateSMS(Statistics.Request.RECEIVED, date);
+                            break;
+                        case TAG_FIRST_SMS_DATE_SENT:
+                            date = new Date(Long.valueOf(value));
+                            statistics.setFirstDateSMS(Statistics.Request.SENT, date);
+                            break;
+                        case TAG_NUMBER_OF_SMS_RECEIVED:
+                            statistics.setNumberOfSMS(Statistics.Request.RECEIVED, Integer.valueOf(value));
+                            break;
+                        case TAG_NUMBER_OF_SMS_SENT:
+                            statistics.setNumberOfSMS(Statistics.Request.SENT, Integer.valueOf(value));
+                            break;
+                        case TAG_AVERAGE_CHARACTERS_BY_SMS_RECEIVED:
+                            statistics.setAverageCharactersBySMS(Statistics.Request.RECEIVED, Double.valueOf(value));
+                            break;
+                        case TAG_AVERAGE_CHARACTERS_BY_SMS_SENT:
+                            statistics.setAverageCharactersBySMS(Statistics.Request.SENT, Double.valueOf(value));
+                            break;
+                        case TAG_TOTAL_WORDS_RECEIVED:
+                            statistics.setTotalWords(Statistics.Request.RECEIVED, Integer.valueOf(value));
+                            break;
+                        case TAG_TOTAL_WORDS_SENT:
+                            statistics.setTotalWords(Statistics.Request.SENT, Integer.valueOf(value));
+                            break;
+                        case TAG_TOTAL_CHARACTERS_RECEIVED:
+                            statistics.setTotalCharacters(Statistics.Request.RECEIVED, Integer.valueOf(value));
+                            break;
+                        case TAG_TOTAL_CHARACTERS_SENT:
+                            statistics.setTotalCharacters(Statistics.Request.SENT, Integer.valueOf(value));
+                            break;
+                        case TAG_SMS_BY_DAY_RECEIVED:
+                            statistics.setNumberOfSMSBy(Statistics.Request.RECEIVED, Statistics.TIME.DAY, Double.valueOf(value));
+                            break;
+                        case TAG_SMS_BY_DAY_SENT:
+                            statistics.setNumberOfSMSBy(Statistics.Request.SENT, Statistics.TIME.DAY, Double.valueOf(value));
+                            break;
+                        case TAG_SMS_BY_WEEK_RECEIVED:
+                            statistics.setNumberOfSMSBy(Statistics.Request.RECEIVED, Statistics.TIME.WEEK, Double.valueOf(value));
+                            break;
+                        case TAG_SMS_BY_WEEK_SENT:
+                            statistics.setNumberOfSMSBy(Statistics.Request.SENT, Statistics.TIME.WEEK, Double.valueOf(value));
+                            break;
+                        case TAG_SMS_BY_MONTH_RECEIVED:
+                            statistics.setNumberOfSMSBy(Statistics.Request.RECEIVED, Statistics.TIME.MONTH, Double.valueOf(value));
+                            break;
+                        case TAG_SMS_BY_MONTH_SENT:
+                            statistics.setNumberOfSMSBy(Statistics.Request.SENT, Statistics.TIME.MONTH, Double.valueOf(value));
+                            break;
+                        case TAG_SMS_BY_YEAR_RECEIVED:
+                            statistics.setNumberOfSMSBy(Statistics.Request.RECEIVED, Statistics.TIME.YEAR, Double.valueOf(value));
+                            break;
+                        case TAG_SMS_BY_YEAR_SENT:
+                            statistics.setNumberOfSMSBy(Statistics.Request.SENT, Statistics.TIME.YEAR, Double.valueOf(value));
+                            break;
+                    }
+                } catch (NumberFormatException e) {
+                    Log.e(TAG, e.getMessage());
+                }
             }
         }
     }

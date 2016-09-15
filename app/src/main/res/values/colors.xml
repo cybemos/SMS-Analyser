@@ -5,4 +5,5 @@
     <color name="colorAccent">#43cb7e</color>
     <color name="color_received">#cd5454</color>
     <color name="color_sent">#4385cb</color>
+    <color name="transparent">#96777676</color>
 </resources>
