@@ -10,7 +10,14 @@ import com.cybemos.analyser.data.Util;
  */
 public class Extension {
 
+    /**
+     * characters after "." in a file
+     */
     private final String extension;
+
+    /**
+     * the string representation of the extension
+     */
     @StringRes
     private final int name;
 

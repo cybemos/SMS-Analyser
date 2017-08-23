@@ -46,18 +46,34 @@ public class ConcreteStatistics implements Statistics {
         numberOfSMSBy = new Double[INDEX_MAX_RS][INDEX_MAX_TIME];
     }
 
+    /**
+     * Update the name
+     * @param name some name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Update the other phone number
+     * @param number the other phone number
+     */
     public void setNumber(String number) {
         this.number = number;
     }
 
+    /**
+     * Update the date where those statistics were made
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     * Update the date of the first sms sent/received
+     * @param request SENT or RECEIVED
+     * @param firstDateSMS some date
+     */
     public void setFirstDateSMS(@NonNull Request request, @NonNull Date firstDateSMS) {
         switch (request) {
             case RECEIVED:
@@ -69,6 +85,10 @@ public class ConcreteStatistics implements Statistics {
         }
     }
 
+    /**
+     * Update the number of sms sent/received
+     * @param request SENT or RECEIVED
+     */
     public void setNumberOfSMS(@NonNull Request request, int numberOfSMS) {
         switch (request) {
             case RECEIVED:
@@ -80,6 +100,10 @@ public class ConcreteStatistics implements Statistics {
         }
     }
 
+    /**
+     * Update the average characters by sms sent/received
+     * @param request SENT or RECEIVED
+     */
     public void setAverageCharactersBySMS(@NonNull Request request, double averageCharactersBySMS) {
         switch (request) {
             case RECEIVED:
@@ -91,6 +115,10 @@ public class ConcreteStatistics implements Statistics {
         }
     }
 
+    /**
+     * Update the total words sent/received
+     * @param request SENT or RECEIVED
+     */
     public void setTotalWords(@NonNull Request request, int totalWords) {
         switch (request) {
             case RECEIVED:
@@ -102,6 +130,10 @@ public class ConcreteStatistics implements Statistics {
         }
     }
 
+    /**
+     * Update the total characters
+     * @param request SENT or RECEIVED
+     */
     public void setTotalCharacters(@NonNull Request request, int totalCharacters) {
         switch (request) {
             case RECEIVED:
@@ -113,6 +145,10 @@ public class ConcreteStatistics implements Statistics {
         }
     }
 
+    /**
+     * Update the number of sms by time
+     * @param request SENT or RECEIVED
+     */
     public void setNumberOfSMSBy(@NonNull Request request, @NonNull TIME time, double numberOfSMSBy) {
         switch (request) {
             case RECEIVED:

@@ -14,9 +14,28 @@ import java.util.List;
  */
 public interface Parser {
 
+    /**
+     * @return all extensions handled by this parser
+     */
     @NonNull List<Extension> getExtensions();
+
+    /**
+     * @param extension some extension or null
+     * @return true if the parser can handle the extension else false
+     */
     boolean canHandle(@Nullable String extension);
+
+    /**
+     * save into a file statistics
+     * @return true if succeed else false
+     */
     boolean save(@NonNull Statistics statistics, @NonNull File save);
+
+    /**
+     * Load statistics from a file
+     * @param file input file
+     * @return the statistics loaded or null if failed
+     */
     @Nullable Statistics load(@NonNull File file);
 
     String TAG_RECEIVED = "received";

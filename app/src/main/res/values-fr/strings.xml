@@ -69,6 +69,7 @@
     <string name="cant_show_files">"Impossible d'afficher les fichiers"</string>
 
     <string name="format_txt">Format TXT</string>
+    <string name="format_json">Format JSON</string>
     <string name="preferences_format_export">"Format d'export par defaut"</string>
 
     <string name="preferences_graphs">Graphiques</string>

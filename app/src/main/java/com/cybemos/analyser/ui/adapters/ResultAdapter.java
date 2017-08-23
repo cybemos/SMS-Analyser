@@ -1,10 +1,5 @@
 package com.cybemos.analyser.ui.adapters;
 
-/**
- * @version 1.0
- * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
- */
-
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
@@ -30,6 +25,11 @@ import com.cybemos.uilibrary.views.Legend;
 import com.cybemos.uilibrary.views.graph.PieGraph;
 import com.cybemos.uilibrary.views.graph.Slice;
 import com.cybemos.uilibrary.views.graph.SliceTouchListener;
+
+/**
+ * @version 1.0
+ * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
+ */
 
 public class ResultAdapter extends BaseAdapter {
 

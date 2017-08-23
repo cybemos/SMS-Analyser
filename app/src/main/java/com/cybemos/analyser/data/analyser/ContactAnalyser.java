@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * Analyse all the sms of a contact or all contacts
  * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
  * @version 1.0
  */
@@ -28,6 +29,9 @@ public class ContactAnalyser implements Serializable, IAnalyser {
     @StringRes
     private int lastErrorId;
 
+    /**
+     * All contact Analyser
+     */
     public ContactAnalyser(Context context) {
         number = name = context.getString(R.string.all);
         lastErrorId = -1;
@@ -35,6 +39,9 @@ public class ContactAnalyser implements Serializable, IAnalyser {
         request2 = new AnalyserRequest(Statistics.Request.SENT);
     }
 
+    /**
+     * One contact Analyser
+     */
     public ContactAnalyser(@Nullable String name, @NonNull String number) {
         this.number = Util.sanitizeNumber(number);
         this.name = (name == null) ? this.number : name;

@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.support.annotation.CallSuper;
 
 /**
+ * Launch the task of some analysers
  * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
  * @version 1.0
  */
