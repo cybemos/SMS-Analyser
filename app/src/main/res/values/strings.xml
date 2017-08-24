@@ -92,6 +92,7 @@
     <string name="cant_show_files">"Can't show files"</string>
 
     <string name="format_txt">TXT format</string>
+    <string name="format_json">JSON format</string>
 
 
     <string name="preferences_format_export">Default export format</string>
@@ -100,10 +101,12 @@
     <string-array name="format_export_keys" translatable="false">
         <item>xml</item>
         <item>txt</item>
+        <item>json</item>
     </string-array>
     <string-array name="format_export">
         <item>@string/format_xml</item>
         <item>@string/format_txt</item>
+        <item>@string/format_json</item>
     </string-array>
 
     <string name="preferences_graphs">Graphs</string>

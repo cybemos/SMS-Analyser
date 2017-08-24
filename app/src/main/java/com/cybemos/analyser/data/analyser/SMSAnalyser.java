@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Class which allow to add SMSs and finally generates statistics from it
  * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
  * @version 1.0
  */
@@ -97,23 +98,27 @@ public class SMSAnalyser implements Serializable {
     }
 
     public synchronized double getNumberOfSMSBy(Statistics.TIME time) {
-        double total = count();
-        double result = -1;
+        int total = count();
         Date first = getFirstSMSDate();
         Date actual = new Date();
         long diffInMs = actual.getTime() - first.getTime();
+        return getNumberOfSMSBy(diffInMs, total, time);
+    }
+
+    public static double getNumberOfSMSBy(long diffTimeInMs, int totalSMS, Statistics.TIME time) {
+        double result = -1;
         switch (time) {
             case DAY:
-                result = total / TimeUnit.MILLISECONDS.toDays(diffInMs);
+                result = ((double) totalSMS) / TimeUnit.MILLISECONDS.toDays(diffTimeInMs);
                 break;
             case WEEK:
-                result = total * 7.0 / TimeUnit.MILLISECONDS.toDays(diffInMs);
+                result = totalSMS * 7.0 / TimeUnit.MILLISECONDS.toDays(diffTimeInMs);
                 break;
             case MONTH:
-                result = total * 30.5 / TimeUnit.MILLISECONDS.toDays(diffInMs);
+                result = totalSMS * 30.5 / TimeUnit.MILLISECONDS.toDays(diffTimeInMs);
                 break;
             case YEAR:
-                result = total * 365.0 / TimeUnit.MILLISECONDS.toDays(diffInMs);
+                result = totalSMS * 365.0 / TimeUnit.MILLISECONDS.toDays(diffTimeInMs);
                 break;
         }
         return result;

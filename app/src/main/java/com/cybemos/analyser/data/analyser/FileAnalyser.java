@@ -10,6 +10,7 @@ import com.cybemos.analyser.data.statistics.Statistics;
 import java.io.File;
 
 /**
+ * Read files and analyse it.
  * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
  * @version 1.0
  */

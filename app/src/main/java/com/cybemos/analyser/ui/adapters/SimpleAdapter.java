@@ -1,7 +1,4 @@
-package com.cybemos.analyser.ui.adapters;/**
- * @version 1.0
- * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
- */
+package com.cybemos.analyser.ui.adapters;
 
 import java.util.List;
 
@@ -13,6 +10,11 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.cybemos.analyser.R;
+
+/**
+ * @version 1.0
+ * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
+ */
 
 public class SimpleAdapter<T> extends BaseAdapter {
 

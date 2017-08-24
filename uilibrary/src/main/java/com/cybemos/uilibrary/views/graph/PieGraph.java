@@ -23,7 +23,13 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class PieGraph extends AbstractTextView {
+    // TODO
 
+    /**
+     * Tag of the class.
+     * Usefull for retrieve traces using regex
+     */
+    @SuppressWarnings("unused")
     private static final String TAG = "PieGraph";
     private Path path;
     private RectF rect;

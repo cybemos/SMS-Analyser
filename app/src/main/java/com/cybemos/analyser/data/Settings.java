@@ -14,15 +14,30 @@ import com.cybemos.analyser.data.parser.ParserController;
 import java.util.List;
 
 /**
+ * Settings of the application.
+ * Contains all the user preferences.
  * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
  * @version 1.0
  */
 public class Settings {
 
+    /**
+     * Tag of the class.
+     * Usefull to retrieve traces using regex.
+     */
     private static final String TAG = "Settings";
+    /**
+     * Context of the application
+     */
     private final Context context;
+    /**
+     * the default color for received SMS
+     */
     @ColorInt
     private final int default_color_received;
+    /**
+     * the default color for sent SMS
+     */
     @ColorInt
     private final int default_color_sent;
 
@@ -43,6 +58,10 @@ public class Settings {
         sharedPref.edit().clear().apply();
     }
 
+    /**
+     * Return the received color
+     * @return the received color
+     */
     @ColorInt
     public int getColor_received() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -51,6 +70,10 @@ public class Settings {
     }
 
 
+    /**
+     * Return the sent color
+     * @return the sent color
+     */
     @ColorInt
     public int getColor_sent() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -58,6 +81,12 @@ public class Settings {
         return sharedPref.getInt(key, default_color_sent);
     }
 
+    /**
+     * Return the chosen graph
+     * @see #BAR_GRAPH
+     * @see #PIE_GRAPH
+     * @return the chosen graph
+     */
     public int getChosenGraph() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String key = context.getString(R.string.graph_type_id);
@@ -73,6 +102,10 @@ public class Settings {
         return intVal;
     }
 
+    /**
+     * Return the chosen format
+     * @return the chosen format
+     */
     public int getChosenFormat() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String key = context.getString(R.string.format_graph_id);
@@ -88,6 +121,10 @@ public class Settings {
         return intVal;
     }
 
+    /**
+     * Return the number of fraction digits
+     * @return the number of fraction digits
+     */
     public int getNumberOfFractionDigits() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String key = context.getString(R.string.preferences_nb_fraction_digits_id);
@@ -103,6 +140,10 @@ public class Settings {
         return intVal;
     }
 
+    /**
+     * Return the default extension
+     * @return the default extension
+     */
     public Extension getDefaultExtension() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         ParserController controller = ParserController.getInstance();

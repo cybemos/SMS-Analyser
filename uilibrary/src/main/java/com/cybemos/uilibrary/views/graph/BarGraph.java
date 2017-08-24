@@ -16,21 +16,56 @@ import com.cybemos.uilibrary.views.AbstractTextView;
 import java.util.ArrayList;
 
 /**
+ * Represents a graph of Bars.
+ * @see Bar
  * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
  * @version 1.0
  */
 public class BarGraph extends AbstractTextView {
 
+    /**
+     * Tag of the class.
+     * Usefull for retrieve traces using regex
+     */
+    @SuppressWarnings("unused")
     private static final String TAG = "BarGraph";
 
+    /**
+     * The rectangle used to draw all the bars.
+     * It is initialized once and save to prevent memory loss as seen in
+     * <a href="https://developer.android.com/training/custom-views/optimizing-view.html>Optimizing view</a>
+     */
     private RectF mRect;
+    /**
+     * Used to set colors and text fonts.
+     * It is initialized once and save to prevent memory loss as seen in
+     * <a href="https://developer.android.com/training/custom-views/optimizing-view.html>Optimizing view</a>
+     */
     private Paint mPaint;
 
+    /**
+     * Represents the titles of each bar.
+     */
     private ArrayList<String> mLabels;
+    /**
+     * Data of bars.
+     */
     private ArrayList<BarData> bars;
+    /**
+     * min value of all bars, at max it is equals to zero
+     */
     private float mMinValue;
+    /**
+     * max value of all bars, at min it is equals to zero
+     */
     private float mMaxValue;
+    /**
+     * Index of the last bar the user clicked
+     */
     private int mLastBarTouchedIndex;
+    /**
+     * Listener called when a touch event is detected
+     */
     private BarTouchListener mListener;
 
     public BarGraph(Context context) {
@@ -55,14 +90,25 @@ public class BarGraph extends AbstractTextView {
         init(context, attrs);
     }
 
+    /**
+     * Add a bar to the graph
+     * @param bar some bar
+     */
     public void addBar(@NonNull Bar bar) {
         bars.add(new BarData(bar));
     }
 
+    /**
+     * Remove all bars from the graph
+     */
     public void removeAllBars() {
         bars.clear();
     }
 
+    /**
+     * Update all the labels
+     * @param labels labels for bars
+     */
     public void setLabels(String... labels) {
         mLabels.clear();
         if (labels != null) {
@@ -74,10 +120,17 @@ public class BarGraph extends AbstractTextView {
         }
     }
 
+    /**
+     * Update the bar listener
+     * @param listener some listener
+     */
     public void setBarTouchListener(BarTouchListener listener) {
         mListener = listener;
     }
 
+    /**
+     * Called to update the min and max value
+     */
     private void barsDataChanged() {
         mMinValue = mMaxValue = 0;
         if (bars != null) {
@@ -89,6 +142,9 @@ public class BarGraph extends AbstractTextView {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -171,6 +227,9 @@ public class BarGraph extends AbstractTextView {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         boolean consume = false;
@@ -211,6 +270,12 @@ public class BarGraph extends AbstractTextView {
         return consume;
     }
 
+    /**
+     * Initialize the bar graph
+     * @param context not used
+     * @param attrs not used
+     */
+    @SuppressWarnings("unused")
     private void init(Context context, AttributeSet attrs) {
         bars = new ArrayList<>();
         mLabels = new ArrayList<>();
@@ -222,6 +287,10 @@ public class BarGraph extends AbstractTextView {
         mPaint = new Paint();
     }
 
+    /**
+     * Graphic data for a Bar.
+     * Prevent reallocation.
+     */
     private static class BarData {
         private final Bar mBar;
         private final RectF mRect;

@@ -1,7 +1,4 @@
-package com.cybemos.analyser.ui.adapters;/**
- * @version 1.0
- * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
- */
+package com.cybemos.analyser.ui.adapters;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,6 +19,11 @@ import com.cybemos.analyser.data.exceptions.FileAccessException;
 import com.cybemos.analyser.data.analyser.FileAnalyser;
 import com.cybemos.analyser.ui.activities.ResultActivity;
 import com.cybemos.uilibrary.adapters.SelectableItemsAdapter;
+
+/**
+ * @version 1.0
+ * @author <a href="mailto:sonet.e1301490@etud.univ-ubs.fr">Nicolas Sonet</a>
+ */
 
 public class FileAdapter extends SelectableItemsAdapter {
 
